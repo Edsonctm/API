@@ -1,5 +1,6 @@
 package com.example.demo.entities
 
+import com.example.demo.DTO.UsuarioRetorno
 import jakarta.persistence.*
 import org.jetbrains.annotations.NotNull
 
@@ -20,4 +21,12 @@ class Usuario(
     @NotNull("A senha é obrigatória!")
     val senha: String
 
-)
+){
+    fun toUsuarioRetorno(): UsuarioRetorno{
+        return UsuarioRetorno(
+            id = id,
+            nome = nome,
+            email = email
+        )
+    }
+}

@@ -1,5 +1,6 @@
 package com.example.demo.controllers
 
+import com.example.demo.DTO.UsuarioRetorno
 import com.example.demo.entities.Usuario
 import com.example.demo.repositories.UsuarioRepository
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -19,13 +19,18 @@ class UsuarioController(
 )  {
 
     @GetMapping
-    fun todosUsuarios(): List<Usuario> {
-        return usuarioRepository.findAll()
+    fun todosUsuarios(): List<UsuarioRetorno> {
+        return usuarioRepository.findAll().map{
+            it.toUsuarioRetorno()
+        }
     }
 
     @PostMapping
-    fun criarUsuario(@RequestBody usuario: Usuario): Usuario {
-        return usuarioRepository.save(usuario)
+    fun criarUsuario(@RequestBody usuario: Usuario): Any {
+        check(usuarioRepository.findByEmail(usuario.email) == null){
+            error("E-mail já cadastrado!")
+        }
+        return usuarioRepository.save(usuario).toUsuarioRetorno()
     }
 
     @PutMapping
