@@ -2,8 +2,11 @@ package com.example.demo.controllers
 
 import com.example.demo.DTO.CadastroDTO
 import com.example.demo.DTO.LoginDTO
+import com.example.demo.DTO.LoginRetorno
 import com.example.demo.entities.Usuario
 import com.example.demo.repositories.UsuarioRepository
+import com.example.demo.security.TokenService
+import org.apache.catalina.connector.Response
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -16,16 +19,19 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("auth")
 class AuthenticationController(
-    val authenticationManager: AuthenticationManager,
-    var usuarioRepository: UsuarioRepository
+    private val authenticationManager: AuthenticationManager,
+    private val usuarioRepository: UsuarioRepository,
+    private val tokenService: TokenService,
+
 ) {
 
     @PostMapping("/login")
     fun login(@RequestBody login: LoginDTO): Any {
         val userPassword = UsernamePasswordAuthenticationToken(login.usuario, login.senha)
         val auth = this.authenticationManager.authenticate(userPassword)
+        val token = tokenService.generateToken(auth.principal as Usuario)
 
-        return "Usuário logado!"
+        return ResponseEntity.ok(LoginRetorno(token))
     }
 
     @PostMapping("/register")
