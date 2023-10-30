@@ -1,32 +1,77 @@
 package com.example.demo.entities
 
+import com.example.demo.DTO.CadastroDTO
 import com.example.demo.DTO.UsuarioRetorno
+import com.example.demo.repositories.UsuarioRepository
 import jakarta.persistence.*
 import org.jetbrains.annotations.NotNull
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
 @Table(name = "usuarios")
-class Usuario(
+class Usuario : UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0
 
     @NotNull("O nome é obrigatório!")
-    val nome: String,
+    var nome: String = ""
 
     @NotNull("O email é obrigatório!")
-    val email: String,
+    var email: String = ""
 
     @NotNull("A senha é obrigatória!")
-    val senha: String
+    var senha: String = ""
 
-){
+    var role: UsuarioRoles = UsuarioRoles.USER
+
     fun toUsuarioRetorno(): UsuarioRetorno{
         return UsuarioRetorno(
             id = id,
             nome = nome,
             email = email
         )
+    }
+
+    fun toUsuarioCadastro(cadastro: CadastroDTO, senhaEncoded: String): Usuario{
+        val user = Usuario()
+        user.nome = cadastro.nome
+        user.email = cadastro.email
+        user.senha = senhaEncoded
+        return user
+    }
+
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+        return if(this.role == UsuarioRoles.ADMIN) mutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"),
+            SimpleGrantedAuthority("ROLE_USER"))
+        else mutableListOf(SimpleGrantedAuthority("ROLE_USER"))
+
+    }
+
+    override fun getPassword(): String {
+        return senha
+    }
+
+    override fun getUsername(): String {
+        return nome
+    }
+
+    override fun isAccountNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isAccountNonLocked(): Boolean {
+        return true
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isEnabled(): Boolean {
+        return true
     }
 }
