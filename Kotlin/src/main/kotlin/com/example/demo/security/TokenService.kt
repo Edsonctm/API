@@ -28,7 +28,7 @@ class TokenService(
                 .withExpiresAt(tokenExpiration())
                 .sign(algorithm)
         } catch(e: JWTCreationException){
-            throw RuntimeException("Erro ao gerar token", e)
+            throw e.cause?: RuntimeException("Erro ao gerar token", e)
         }
     }
 

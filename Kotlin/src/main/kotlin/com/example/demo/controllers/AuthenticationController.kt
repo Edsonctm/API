@@ -1,12 +1,11 @@
 package com.example.demo.controllers
 
-import com.example.demo.DTO.CadastroDTO
-import com.example.demo.DTO.LoginDTO
-import com.example.demo.DTO.LoginRetorno
+import com.example.demo.dto.CadastroDTO
+import com.example.demo.dto.LoginDTO
+import com.example.demo.dto.LoginRetorno
 import com.example.demo.entities.Usuario
 import com.example.demo.repositories.UsuarioRepository
 import com.example.demo.security.TokenService
-import org.apache.catalina.connector.Response
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

@@ -1,6 +1,4 @@
-package com.example.demo.DTO
-
-import com.example.demo.entities.UsuarioRoles
+package com.example.demo.dto
 
 data class CadastroDTO (
     val nome: String,
