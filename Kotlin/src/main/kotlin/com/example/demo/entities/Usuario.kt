@@ -1,9 +1,12 @@
 package com.example.demo.entities
 
-import com.example.demo.DTO.CadastroDTO
-import com.example.demo.DTO.UsuarioRetorno
-import com.example.demo.repositories.UsuarioRepository
-import jakarta.persistence.*
+import com.example.demo.dto.CadastroDTO
+import com.example.demo.dto.UsuarioRetorno
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
+import jakarta.persistence.Id
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import org.jetbrains.annotations.NotNull
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

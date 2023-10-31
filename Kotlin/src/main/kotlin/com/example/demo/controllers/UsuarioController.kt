@@ -1,6 +1,6 @@
 package com.example.demo.controllers
 
-import com.example.demo.DTO.UsuarioRetorno
+import com.example.demo.dto.UsuarioRetorno
 import com.example.demo.entities.Usuario
 import com.example.demo.repositories.UsuarioRepository
 import org.springframework.web.bind.annotation.DeleteMapping

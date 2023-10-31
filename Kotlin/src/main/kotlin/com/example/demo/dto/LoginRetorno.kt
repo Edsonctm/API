@@ -1,4 +1,4 @@
-package com.example.demo.DTO
+package com.example.demo.dto
 
 data class LoginRetorno (
     val token: String
