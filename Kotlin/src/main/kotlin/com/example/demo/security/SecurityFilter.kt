@@ -21,10 +21,12 @@ class SecurityFilter(
     ) {
         val token = this.recoverToken(request)
         val email = tokenService.validateToken(token)
-        val user = usuarioRepository.findByEmail(email)?: return filterChain.doFilter(request, response)
 
-        val authentication = UsernamePasswordAuthenticationToken(user, null, user.authorities)
-        SecurityContextHolder.getContext().authentication = authentication
+        usuarioRepository.findByEmail(email)?.let {
+            SecurityContextHolder.getContext().authentication =
+                UsernamePasswordAuthenticationToken(it, null, it.authorities)
+        }
+
         filterChain.doFilter(request, response)
     }
 
