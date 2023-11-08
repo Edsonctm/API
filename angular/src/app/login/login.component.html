@@ -1,10 +1,4 @@
 <div>
-    <select #classe (change)="0">
-        <option value="alert-success" label="Sucesso">Sucesso</option>
-        <option value="alert-info">Informação</option>
-        <option value="alert-warning">Alerta</option>
-        <option value="alert-danger">Erro</option>
-    </select>
-
-    <div class="alert {{classe.value}}">Texto com cor conforme classe.</div>
+    <h3>Novo componente</h3>
+    <app-segundo [nome]="nome"></app-segundo>
 </div>

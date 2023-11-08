@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  nome: string = "Segundo Componente"
   constructor(private loginService: LoginService){
 
   }
