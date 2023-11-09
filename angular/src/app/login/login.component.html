@@ -1,4 +1,3 @@
-<div>
-    <h3>Novo componente</h3>
-    <app-segundo [nome]="nome"></app-segundo>
-</div>
+<app-segundo (mudouValor)="onMudouValor($event)"></app-segundo>
+
+<p>{{valor}}</p>

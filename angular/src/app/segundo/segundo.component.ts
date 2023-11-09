@@ -1,18 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-segundo',
   templateUrl: './segundo.component.html',
-  styleUrls: ['./segundo.component.css'],
-  inputs:['nomeApp:nome']
+  styleUrls: ['./segundo.component.css']
 })
-export class SegundoComponent implements OnInit {
+export class SegundoComponent {
 
-  // @Input('nome') 
-  nomeApp: string = ''
+@Output() mudouValor = new EventEmitter();
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  valor: number = 0;
+
+  incremento(){
+    this.valor++
+    this.mudouValor.emit({novoValor: this.valor})
+  }
+
+  decremento(){
+    this.valor--
+    this.mudouValor.emit({novoValor: this.valor})
   }
 
 }
