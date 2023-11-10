@@ -7,10 +7,16 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  valor: number | undefined = undefined
-  
-  onMudouValor(evento: any){
-    this.valor = evento.novoValor
+
+  valor2: number = 10
+  componentView: boolean = false
+
+  mudaValor(){
+    this.valor2++
+  }
+
+  fechaComponent(){
+    this.componentView = !this.componentView
   }
 
 }

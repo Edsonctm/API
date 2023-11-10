@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-segundo',
@@ -9,16 +9,10 @@ export class SegundoComponent {
 
 @Output() mudouValor = new EventEmitter();
 
-  valor: number = 0;
+  @ViewChild('varInput') campoValorInput: ElementRef | undefined
 
-  incremento(){
-    this.valor++
-    this.mudouValor.emit({novoValor: this.valor})
-  }
-
-  decremento(){
-    this.valor--
-    this.mudouValor.emit({novoValor: this.valor})
+  faca(){
+    console.log(this.campoValorInput?.nativeElement.baseURI)
   }
 
 }
