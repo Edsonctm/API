@@ -1,1 +1,8 @@
-<p>teste works!</p>
+<div>
+    <h3 [ngClass]="{
+        'redText': cor,
+        'blueText': !cor
+    }">Teste de classe.
+    </h3>
+    <button (click)="mudaCor()">Mudar Cor</button>
+</div>
