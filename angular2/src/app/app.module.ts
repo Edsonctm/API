@@ -7,11 +7,15 @@ import { TesteComponent } from './teste/teste.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
+import { FundoAzulDirective } from './fundo-azul.directive';
+import { NovaDiretivaDirective } from './nova-diretiva.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TesteComponent
+    TesteComponent,
+    FundoAzulDirective,
+    NovaDiretivaDirective
   ],
   imports: [
     BrowserModule,

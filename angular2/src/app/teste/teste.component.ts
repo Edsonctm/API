@@ -7,9 +7,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
   styleUrls: ['./teste.component.scss']
 })
 export class TesteComponent {
-  cor: Boolean = true
-
-  mudaCor(){
-    this.cor = !this.cor
+  meuObjeto: any = {
+    titulo: 'teste',
+    nome: null
   }
 }
