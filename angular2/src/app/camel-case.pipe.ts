@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'camelCase'
+  name: 'camelCase',
+  pure: false
 })
 export class CamelCasePipe implements PipeTransform {
 
-  transform(value: string, ...args: unknown[]): string {
-    let values = value.split(' ')
-    let result = ''
+  transform(value: string[], ...args: unknown[]): string[] {
+    let result: string[] = []
 
-    values.forEach((v) => {
+    value.forEach((v) => {
       let x = v[0].toUpperCase() + v.substring(1).toLowerCase()
-      result += x + " "
+      result.push(x)
     })
     return result;
   }

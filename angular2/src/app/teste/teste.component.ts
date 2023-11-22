@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class TesteComponent  {
-  nome: string = "Edson"
-  valor: number = 2.99
-  frase: string = "essa frase é apenas um exemplo."
+  lista = ['teste1', 'teste2']
+
+  adicionar(x: string){
+    this.lista.push(x)
+    console.log(this.lista)
+  }
 }

@@ -1,3 +1,9 @@
 <div>
-    <p>{{frase | camelCase}}</p>
+    <ul>
+        <li *ngFor = "let y of lista | camelCase">
+            {{y}}
+        </li>
+    </ul>
+    <input type="text" #item>
+    <button (click)="adicionar(item.value)">Add</button>
 </div>
