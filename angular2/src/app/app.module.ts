@@ -11,6 +11,7 @@ import { FundoAzulDirective } from './fundo-azul.directive';
 import { NovaDiretivaDirective } from './nova-diretiva.directive';
 import { TesteService } from './teste.service';
 import { CamelCasePipe } from './camel-case.pipe';
+import { roteador } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CamelCasePipe } from './camel-case.pipe';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatMenuModule,
+    roteador
   ],
   providers: [TesteService],
   bootstrap: [AppComponent]
